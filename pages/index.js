@@ -1,24 +1,20 @@
-import { PrismaClient } from '@prisma/client'
-import { useEffect, useState } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/client'
 
-export const getServerSideProps = async ({ req }) => {
-  const prisma = new PrismaClient()
+const IndexPage = () => {
+  const [ session, loading ] = useSession()
 
-  const manyUsers = await prisma.user.findMany()
+  if(loading) return null
 
-  const users = JSON.parse(JSON.stringify(manyUsers));
-
-  return { props: { users } }
+  return <>
+    {!session && <>
+      Not signed in <br/>
+      <button onClick={() => signIn()}>Sign in</button>
+    </>}
+    {session && <>
+      Signed in as {session.user.name} <br/>
+      <button onClick={() => signOut()}>Sign out</button>
+    </>}
+  </>
 }
 
-export default ({ users }) => {
-  useEffect(() => {
-    console.info(users);
-  }, [])
-
-  return (
-    <div> 
-      {JSON.stringify(users)}
-    </div>
-  )
-}
+export default IndexPage
