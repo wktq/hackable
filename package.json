@@ -1,13 +1,13 @@
 {
-  "name": "saas",
-  "description": "Schema for an identity service for a SaaS with a REST API",
+  "name": "hackable",
+  "description": "Hackable Community App",
   "license": "UNLICENSED",
   "dependencies": {
-    "@next-auth/prisma-adapter": "^0.5.2-next.19",
+    "@next-auth/prisma-adapter": "^0.4.4-canary.81",
     "@prisma/client": "^3.5.0",
     "dotenv": "^10.0.0",
     "next": "12.0.4",
-    "next-auth": "^4.0.0-beta.7",
+    "next-auth": "^3.29.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
